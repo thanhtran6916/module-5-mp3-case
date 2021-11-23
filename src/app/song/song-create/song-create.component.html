@@ -1,0 +1,37 @@
+<form [formGroup]="songForm">
+  <div class="mb-3">
+    <label class="form-label">Name<span style="color: red">*</span></label>
+    <input type="text" class="form-control" formControlName="name">
+    <div *ngIf="!name?.valid && (name?.dirty ||name?.touched)" style="color: red">
+      <div [hidden]="!name.errors.required">
+        First Name is required!
+      </div>
+      <div [hidden]="!name.errors.minlength">
+        Min Length is 4!
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Singer<span style="color: red">*</span></label>
+    <input type="text" class="form-control" formControlName="singer">
+    <div *ngIf="!singer?.valid && (singer?.dirty ||singer?.touched)" style="color: red">
+      <div [hidden]="!singer.errors.required">
+        First Name is required!
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select class="form-select form-select-md" formControlName="category">
+      <option [value]="null" disabled>Select Category</option>
+      <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Song data</label>
+    <input type="file" name="profile" multiple (change)="onFileSelect($event)" />
+  </div>
+  <button type="submit" class="btn btn-warning" (click)="createProduct()">Save</button>
+  <a routerLink="/categories/list" class="btn btn-primary">Back</a>
+</form>
+

@@ -1,0 +1,18 @@
+<form [formGroup]="songForm">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Singer</label>
+    <input type="text" class="form-control" formControlName="singer">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">category</label>
+    <select class="form-select form-select-md" formControlName="category">
+      <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-warning" (click)="editSong()">Edit</button>
+  <a routerLink="/songs/list" class="btn btn-primary">Back</a>
+</form>
